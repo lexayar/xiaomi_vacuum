@@ -7,14 +7,6 @@ from .miio import DreameVacuum, DeviceException
 
 from homeassistant.components.vacuum import (
     PLATFORM_SCHEMA,
-    SUPPORT_STATE,
-    SUPPORT_BATTERY,
-    SUPPORT_LOCATE,
-    SUPPORT_PAUSE,
-    SUPPORT_RETURN_HOME,
-    SUPPORT_START,
-    SUPPORT_STOP,
-    SUPPORT_FAN_SPEED,
     STATE_CLEANING,
     STATE_IDLE,
     STATE_PAUSED,
@@ -22,7 +14,9 @@ from homeassistant.components.vacuum import (
     STATE_DOCKED,
     STATE_ERROR,
     StateVacuumEntity,
+    VacuumEntityFeature
 )
+
 
 from homeassistant.const import CONF_HOST, CONF_NAME, CONF_TOKEN
 from homeassistant.helpers import config_validation as cv, entity_platform
@@ -61,14 +55,14 @@ SERVICE_CLEAN_ZONE = "vacuum_clean_zone"
 SERVICE_WATER_LEVEL = "set_water_level"
 
 SUPPORT_XIAOMI = (
-    SUPPORT_STATE
-    | SUPPORT_BATTERY
-    | SUPPORT_LOCATE
-    | SUPPORT_RETURN_HOME
-    | SUPPORT_START
-    | SUPPORT_STOP
-    | SUPPORT_PAUSE
-    | SUPPORT_FAN_SPEED
+    VacuumEntityFeature.STATE
+    | VacuumEntityFeature.BATTERY
+    | VacuumEntityFeature.LOCATE
+    | VacuumEntityFeature.RETURN_HOME
+    | VacuumEntityFeature.START
+    | VacuumEntityFeature.STOP
+    | VacuumEntityFeature.PAUSE
+    | VacuumEntityFeature.FAN_SPEED
 )
 
 STATE_CODE_TO_STATE = {
