@@ -394,6 +394,5 @@ class MiroboVacuum(StateVacuumEntity):
             self._water_level_reverse = {v: k for k, v in self._water_level.items()}
             self._current_water_level = state.water_level
 
-	    self._attr_activity = self.check_state
         except OSError as exc:
             _LOGGER.error("Got OSError while fetching the state: %s", exc) 
