@@ -156,7 +156,7 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
 
 class MiroboVacuum(StateVacuumEntity):
     """Representation of a Xiaomi Vacuum cleaner robot."""
-
+    _attr_activity = None
     def __init__(self, name, vacuum):
         """Initialize the Xiaomi vacuum cleaner robot handler."""
         self._name = name
@@ -195,7 +195,7 @@ class MiroboVacuum(StateVacuumEntity):
         return self._name
 
     @property
-    def state(self):
+    def check_state(self):
         """Return the status of the vacuum cleaner."""
         if self.vacuum_state is not None:
             try:
@@ -367,6 +367,7 @@ class MiroboVacuum(StateVacuumEntity):
             state = self._vacuum.status()
             self.vacuum_state = state.status
             self.vacuum_error = state.error
+            self._attr_activity = self.check_state
 
             self._fan_speeds = SPEED_CODE_TO_NAME
             self._fan_speeds_reverse = {v: k for k, v in self._fan_speeds.items()}
@@ -393,5 +394,6 @@ class MiroboVacuum(StateVacuumEntity):
             self._water_level_reverse = {v: k for k, v in self._water_level.items()}
             self._current_water_level = state.water_level
 
+	    self._attr_activity = self.check_state
         except OSError as exc:
             _LOGGER.error("Got OSError while fetching the state: %s", exc) 
