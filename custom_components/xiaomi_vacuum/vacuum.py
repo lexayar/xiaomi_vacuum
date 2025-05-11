@@ -11,8 +11,7 @@ from homeassistant.components.vacuum import (
     STATE_IDLE,
     STATE_PAUSED,
     STATE_RETURNING,
-    STATE_DOCKED,
-    STATE_ERROR,
+    VacuumActivity,
     StateVacuumEntity,
     VacuumEntityFeature
 )
@@ -69,9 +68,9 @@ STATE_CODE_TO_STATE = {
     1: STATE_CLEANING,
     2: STATE_IDLE,
     3: STATE_PAUSED,
-    4: STATE_ERROR,
+    4: VacuumActivity.ERROR,
     5: STATE_RETURNING,
-    6: STATE_DOCKED,
+    6: VacuumActivity.DOCKED,
 }
 
 SPEED_CODE_TO_NAME = {
