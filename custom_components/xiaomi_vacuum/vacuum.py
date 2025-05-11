@@ -7,8 +7,6 @@ from .miio import DreameVacuum, DeviceException
 
 from homeassistant.components.vacuum import (
     PLATFORM_SCHEMA,
-    STATE_CLEANING,
-    STATE_IDLE,
     VacuumActivity,
     StateVacuumEntity,
     VacuumEntityFeature
@@ -63,8 +61,8 @@ SUPPORT_XIAOMI = (
 )
 
 STATE_CODE_TO_STATE = {
-    1: STATE_CLEANING,
-    2: STATE_IDLE,
+    1: VacuumActivity.CLEANING,
+    2: VacuumActivity.IDLE,
     3: VacuumActivity.PAUSED,
     4: VacuumActivity.ERROR,
     5: VacuumActivity.RETURNING,
