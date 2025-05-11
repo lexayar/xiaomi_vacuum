@@ -9,8 +9,6 @@ from homeassistant.components.vacuum import (
     PLATFORM_SCHEMA,
     STATE_CLEANING,
     STATE_IDLE,
-    STATE_PAUSED,
-    STATE_RETURNING,
     VacuumActivity,
     StateVacuumEntity,
     VacuumEntityFeature
@@ -67,9 +65,9 @@ SUPPORT_XIAOMI = (
 STATE_CODE_TO_STATE = {
     1: STATE_CLEANING,
     2: STATE_IDLE,
-    3: STATE_PAUSED,
+    3: VacuumActivity.PAUSED,
     4: VacuumActivity.ERROR,
-    5: STATE_RETURNING,
+    5: VacuumActivity.RETURNING,
     6: VacuumActivity.DOCKED,
 }
 
