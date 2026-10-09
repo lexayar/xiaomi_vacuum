@@ -50,7 +50,6 @@ SERVICE_WATER_LEVEL = "set_water_level"
 
 SUPPORT_XIAOMI = (
     VacuumEntityFeature.STATE
-    | VacuumEntityFeature.BATTERY
     | VacuumEntityFeature.LOCATE
     | VacuumEntityFeature.RETURN_HOME
     | VacuumEntityFeature.START
@@ -264,6 +263,7 @@ class MiroboVacuum(StateVacuumEntity):
         """Return the specific state attributes of this vacuum cleaner."""
         if self.vacuum_state is not None:
             return {
+                "battery_level": self.battery_percentage,
                 ATTR_STATUS: STATE_CODE_TO_STATE[int(self.vacuum_state)],
                 ATTR_ERROR:  ERROR_CODE_TO_ERROR.get(self.vacuum_error, "Unknown"),
 				ATTR_FAN_SPEED: SPEED_CODE_TO_NAME.get(self._current_fan_speed, "Unknown"),
